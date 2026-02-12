@@ -1,12 +1,12 @@
-# Mainline Astro Template
+# Sideline Astro Template
 
-Mainline is a free template built with shadcn/ui, Tailwind 4 and Astro 5.
+Sideline is a free template built with shadcn/ui, Tailwind 4 and Astro 5.
 
-- [Demo](https://mainline-astro-template.vercel.app/)
+- [Demo](https://sideline-astro-template.vercel.app/)
 - [Documentation](https://docs.shadcnblocks.com/templates/getting-started)
-- [Figma](https://www.figma.com/design/cFCLMj7DFv0sK7EVsqKeTa/Mainline?node-id=23250-13201&t=I1nAdchDpknii5Bd-1)
+- [Figma](https://www.figma.com/design/cFCLMj7DFv0sK7EVsqKeTa/Sideline?node-id=23250-13201&t=I1nAdchDpknii5Bd-1)
 
-![Mainline Astro Template screenshot](./public/og-image.jpg)
+![Sideline Astro Template screenshot](./public/og-image.jpg)
 
 ## Getting Started
 
