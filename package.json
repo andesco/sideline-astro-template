@@ -1,10 +1,10 @@
 {
-  "name": "mainline-astro-template",
+  "name": "sideline-astro-template",
   "type": "module",
   "version": "1.2.0",
   "author": "shadcnblocks.com",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 4411",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -12,11 +12,11 @@
     "format": "prettier -w ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.7",
-    "@astrojs/react": "^4.4.0",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/vercel": "^8.2.10",
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
     "@hookform/resolvers": "^5.2.2",
     "@nobie-org/tailwindcss-animate": "^1.0.9",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -49,7 +49,7 @@
     "@tailwindcss/vite": "^4.1.14",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "astro": "^5.14.5",
+    "astro": "^5.17.2",
     "astro-themes": "^0.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

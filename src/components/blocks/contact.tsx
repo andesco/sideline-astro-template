@@ -1,128 +1,109 @@
 import { Facebook, Linkedin, Twitter } from "lucide-react";
 
-import { DashedLine } from "../dashed-line";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-const contactInfo = [
-  {
-    title: "Corporate office",
-    content: (
-      <p className="text-muted-foreground mt-3">
-        1 Carlsberg Close
-        <br />
-        1260 Hillview, Australia
-      </p>
-    ),
-  },
-  {
-    title: "Email us",
-    content: (
-      <div className="mt-3">
-        <div>
-          <p className="">Careers</p>
-          <a
-            href="mailto:careers@streamline.com"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            careers@streamline.com
-          </a>
-        </div>
-        <div className="mt-1">
-          <p className="">Press</p>
-          <a
-            href="mailto:press@streamline.com"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            press@streamline.com
-          </a>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Follow us",
-    content: (
-      <div className="mt-3 flex gap-6 lg:gap-10">
-        <a href="#" className="text-muted-foreground hover:text-foreground">
-          <Facebook className="size-5" />
-        </a>
-        <a href="#" className="text-muted-foreground hover:text-foreground">
-          <Twitter className="size-5" />
-        </a>
-        <a href="#" className="text-muted-foreground hover:text-foreground">
-          <Linkedin className="size-5" />
-        </a>
-      </div>
-    ),
-  },
-];
-
 export const Contact = () => {
   return (
-    <section className="py-28 lg:py-32 lg:pt-44">
-      <div className="container max-w-2xl">
-        <h1 className="text-center text-2xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+    <section className="py-16 md:py-28 lg:py-32">
+      <div className="container max-w-4xl">
+        <h1 className="text-center text-4xl font-semibold tracking-tight sm:text-5xl">
           Contact us
         </h1>
-        <p className="text-muted-foreground mt-4 text-center leading-snug font-medium lg:mx-auto">
+        <p className="text-muted-foreground mt-4 text-center">
           Hopefully this form gets through our spam filters.
         </p>
 
-        <div className="mt-10 flex justify-between gap-8 max-sm:flex-col md:mt-14 lg:mt-20 lg:gap-12">
-          {contactInfo.map((info, index) => (
-            <div key={index}>
-              <h2 className="font-medium">{info.title}</h2>
-              {info.content}
-            </div>
-          ))}
-        </div>
-
-        <DashedLine className="my-12" />
-
-        {/* Inquiry Form */}
-        <div className="mx-auto">
-          <h2 className="text-lg font-semibold">Inquiries</h2>
-          <form className="mt-8 space-y-5">
-            <div className="space-y-2">
-              <Label>Full name</Label>
-              <Input placeholder="First and last name" />
-            </div>
-            <div className="space-y-2">
-              <Label>Work email address</Label>
-              <Input placeholder="me@company.com" type="email" />
-            </div>
-            <div className="space-y-2">
-              <Label>
-                Company name{" "}
-                <span className="text-muted-foreground">(optional)</span>
-              </Label>
-              <Input placeholder="Company name" />
-            </div>
-            <div className="space-y-2">
-              <Label>
-                Number of employees{" "}
-                <span className="text-muted-foreground">(optional)</span>
-              </Label>
-              <Input placeholder="e.g. 10-50" />
-            </div>
-            <div className="space-y-2">
-              <Label>Your message</Label>
-              <Textarea
-                placeholder="Write your message"
-                className="min-h-[120px] resize-none"
-              />
+        <div className="mt-8 flex max-md:flex-col md:mt-12 md:divide-x lg:mt-20">
+          <div className="space-y-10 md:pe-14">
+            <div>
+              <h2 className="text-lg font-semibold">Corporate office</h2>
+              <p className="text-muted-foreground mt-3 text-lg font-medium tracking-tight">
+                1 Carlsberg Close
+                <br />
+                1260 Hillview, Australia
+              </p>
             </div>
 
-            <div className="flex justify-end">
-              <Button size="lg" type="submit" className="">
-                Submit
-              </Button>
+            <div>
+              <h2 className="text-lg font-semibold">Email us</h2>
+              <div className="mt-3 space-y-2">
+                <div>
+                  <p>Careers</p>
+                  <a
+                    href="mailto:careers@streamline.com"
+                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+                  >
+                    careers@streamline.com
+                  </a>
+                </div>
+                <div>
+                  <p>Press</p>
+                  <a
+                    href="mailto:press@streamline.com"
+                    className="text-muted-foreground mt-3 text-lg font-medium tracking-tight"
+                  >
+                    press@streamline.com
+                  </a>
+                </div>
+              </div>
             </div>
-          </form>
+
+            <div>
+              <h2 className="text-lg font-semibold">Follow us</h2>
+              <div className="mt-3 flex gap-6">
+                <a href="#" className="text-muted-foreground hover:text-foreground">
+                  <Facebook className="size-6" />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-foreground">
+                  <Twitter className="size-6" />
+                </a>
+                <a href="#" className="text-muted-foreground hover:text-foreground">
+                  <Linkedin className="size-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1 md:ps-8">
+            <h2 className="text-lg font-semibold">Inquiries</h2>
+            <form className="mt-5 space-y-5">
+              <div className="flex flex-col gap-2">
+                <Label>Full name</Label>
+                <Input type="text" placeholder="First and last name" name="fullName" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label>Work email address</Label>
+                <Input type="email" placeholder="me@company.com" name="email" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label>
+                  Company name <span className="text-muted-foreground/60">(optional)</span>
+                </Label>
+                <Input type="text" placeholder="Company name" name="company" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label>
+                  Number of employees <span className="text-muted-foreground/60">(optional)</span>
+                </Label>
+                <Input type="text" placeholder="e.g. 10-50" name="employees" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label>Your message</Label>
+                <Textarea placeholder="Write your message" name="message" className="min-h-[120px]" />
+              </div>
+
+              <div className="flex justify-end">
+                <Button type="submit" size="lg">Submit</Button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>

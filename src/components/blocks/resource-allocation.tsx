@@ -1,254 +1,94 @@
-import { DashedLine } from "../dashed-line";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { cn } from "@/lib/utils";
-
-const topItems = [
+const ITEMS = [
   {
-    title: "Reusable issue templates.",
+    title: "Reusable templates.",
     description:
       "Draft lightning-fast documents with our Smart Instructions and Templates.",
-    images: [
-      {
-        src: "/resource-allocation/templates.webp",
-        alt: "Issue template interface",
-        width: 495,
-        height: 186,
-      },
-    ],
-    className:
-      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: [""],
+    image: "/resource-allocation/templates.webp",
+    alt: "Cycle 37 graph showing Scope, Started, and Completed metrics",
+    className: "md:col-span-3 md:row-span-3",
+    imageClassName:
+      "size-full object-cover object-left-top translate-x-6 md:translate-x-10 lg:translate-x-20",
+    overlay: ["to-background bg-linear-to-r absolute inset-0 z-10 from-transparent via-transparent"],
   },
   {
     title: "Simplify your stack.",
     description: "No more Confluence, SharePoint, or Microsoft Word.",
-    images: [
-      { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
-      { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
-      {
-        src: "/logos/notion.svg",
-        alt: "Notion logo",
-        width: 48,
-        height: 48,
-      },
-      { src: "/logos/word.svg", alt: "Word logo", width: 48, height: 48 },
-      {
-        src: "/logos/monday.svg",
-        alt: "Monday logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/drive.svg",
-        alt: "Google Drive logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/jira.svg",
-        alt: "Jira logo",
-        width: 48,
-        height: 48,
-      },
-      { src: "/logos/asana.svg", alt: "Asana logo", width: 48, height: 48 },
+    image: "/resource-allocation/graveyard.webp",
+    alt: "Triage interface showing issue management options",
+    className: "md:col-span-3 md:col-start-4 md:row-span-3",
+    imageClassName:
+      "size-full object-cover object-left-top translate-x-6 md:translate-x-10 lg:translate-x-20",
+    overlay: [
+      "to-background bg-linear-to-r absolute inset-0 z-10 from-transparent via-transparent",
+      "to-background bg-linear-to-b absolute inset-0 z-10 from-transparent via-transparent",
     ],
-    className:
-      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 md:[&>.title-container]:translate-x-2 xl:[&>.title-container]:translate-x-4 [&>.title-container]:translate-x-0",
-    fade: [],
-  },
-];
-
-const bottomItems = [
-  {
-    title: "Graveyard it.",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.",
-    images: [
-      {
-        src: "/resource-allocation/graveyard.webp",
-        alt: "Graveyard interface",
-        width: 305,
-        height: 280,
-      },
-    ],
-    className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
   },
   {
-    title: "Task discussions.",
+    title: "Access controls.",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.",
+    image: "/resource-allocation/notifications.webp",
+    alt: "Access controls interface showing People, Compliance, and Security options",
+    className: "md:col-span-2 md:row-span-2 md:row-start-4",
+    imageClassName:
+      "size-full object-cover object-left-bottom translate-x-6 pb-6 md:translate-x-10",
+    overlay: [
+      "to-background bg-linear-to-r absolute inset-0 z-10 from-transparent via-transparent",
+      "to-background bg-linear-to-t absolute inset-0 z-10 from-transparent via-transparent",
+    ],
+  },
+  {
+    title: "Task chat.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    images: [
-      {
-        src: "/resource-allocation/discussions.webp",
-        alt: "Task discussions interface",
-        width: 320,
-        height: 103,
-      },
-    ],
-    className:
-      "justify-normal [&>.title-container]:mb-5 md:[&>.title-container]:mb-0 [&>.image-container]:flex-1 md:[&>.image-container]:place-items-center md:[&>.image-container]:-translate-y-3",
-    fade: [""],
+    image: "/resource-allocation/discussions.webp",
+    alt: "Task chat interface showing a conversation",
+    className: "md:col-span-2 md:col-start-3 md:row-span-2 md:row-start-4",
+    imageClassName: "size-full object-contain object-left-top mt-4 px-6",
+    overlay: [],
   },
   {
-    title: "Notifications.",
+    title: "Cycle analysis.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    images: [
-      {
-        src: "/resource-allocation/notifications.webp",
-        alt: "Notifications interface",
-        width: 305,
-        height: 280,
-      },
-    ],
-    className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
+    image: "/resource-allocation/graveyard.webp",
+    alt: "Cycle analysis showing backlog priorities and statistics",
+    className: "md:col-span-2 md:col-start-5 md:row-span-2 md:row-start-4",
+    imageClassName: "size-full object-contain object-center pb-6",
+    overlay: [],
   },
 ];
 
 export const ResourceAllocation = () => {
   return (
-    <section
-      id="resource-allocation"
-      className="overflow-hidden pb-28 lg:pb-32"
-    >
-      <div className="">
-        <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-          Mainline your resource allocation and execution
+    <section id="feature2" className="bg-muted py-16 md:py-28 lg:py-32">
+      <div className="container">
+        <h2 className="text-balance text-center text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          Streamline your resource allocation and execution
         </h2>
 
-        <div className="mt-8 md:mt-12 lg:mt-20">
-          <DashedLine
-            orientation="horizontal"
-            className="container scale-x-105"
-          />
-
-          {/* Top Features Grid - 2 items */}
-          <div className="relative container flex max-md:flex-col">
-            {topItems.map((item, i) => (
-              <Item key={i} item={item} isLast={i === topItems.length - 1} />
-            ))}
-          </div>
-          <DashedLine
-            orientation="horizontal"
-            className="container max-w-7xl scale-x-110"
-          />
-
-          {/* Bottom Features Grid - 3 items */}
-          <div className="relative container grid max-w-7xl md:grid-cols-3">
-            {bottomItems.map((item, i) => (
-              <Item
-                key={i}
-                item={item}
-                isLast={i === bottomItems.length - 1}
-                className="md:pb-0"
-              />
-            ))}
-          </div>
-        </div>
-        <DashedLine
-          orientation="horizontal"
-          className="container max-w-7xl scale-x-110"
-        />
-      </div>
-    </section>
-  );
-};
-
-interface ItemProps {
-  item: (typeof topItems)[number] | (typeof bottomItems)[number];
-  isLast?: boolean;
-  className?: string;
-}
-
-const Item = ({ item, isLast, className }: ItemProps) => {
-  return (
-    <div
-      className={cn(
-        "relative flex flex-col justify-between px-0 py-6 md:px-6 md:py-8",
-        className,
-        item.className,
-      )}
-    >
-      <div className="title-container text-balance">
-        <h3 className="inline font-semibold">{item.title} </h3>
-        <span className="text-muted-foreground"> {item.description}</span>
-      </div>
-
-      {item.fade.includes("bottom") && (
-        <div className="from-muted/80 absolute inset-0 z-10 bg-linear-to-t via-transparent to-transparent md:hidden" />
-      )}
-      {item.images.length > 4 ? (
-        <div className="relative overflow-hidden">
-          <div className="flex flex-col gap-5">
-            {/* First row - right aligned */}
-            <div className="flex translate-x-4 justify-end gap-5">
-              {item.images.slice(0, 4).map((image, j) => (
-                <div
-                  key={j}
-                  className="bg-background grid aspect-square size-16 place-items-center rounded-2xl p-2 lg:size-20"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className="object-contain object-left-top"
-                  />
-                  <div className="from-muted/80 absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l to-transparent" />
-                </div>
-              ))}
-            </div>
-            {/* Second row - left aligned */}
-            <div className="flex -translate-x-4 gap-5">
-              {item.images.slice(4).map((image, j) => (
-                <div
-                  key={j}
-                  className="bg-background grid aspect-square size-16 place-items-center rounded-2xl lg:size-20"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className="object-contain object-left-top"
-                  />
-                  <div className="from-muted absolute inset-y-0 bottom-0 left-0 z-10 w-14 bg-linear-to-r to-transparent" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="image-container grid grid-cols-1 gap-4">
-          {item.images.map((image, j) => (
-            <img
-              key={j}
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              className="object-contain object-left-top"
-            />
+        <div className="mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-6 md:grid-rows-5 lg:mt-20">
+          {ITEMS.map((item) => (
+            <Card
+              key={item.title}
+              className={`bg-card text-card-foreground relative flex flex-col overflow-hidden border-none px-0 text-lg shadow-none max-md:min-h-[400px] ${item.className}`}
+            >
+              <CardHeader className="mb-2">
+                <CardTitle className="inline text-balance font-semibold leading-tight">
+                  {item.title} <span className="text-muted-foreground font-medium">{item.description}</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="relative min-h-40 flex-1 overflow-hidden p-0 lg:min-h-48">
+                {item.overlay.map((overlayClass) => (
+                  <div key={overlayClass} className={overlayClass} />
+                ))}
+                <img src={item.image} alt={item.alt} className={item.imageClassName} />
+              </CardContent>
+            </Card>
           ))}
         </div>
-      )}
-
-      {!isLast && (
-        <>
-          <DashedLine
-            orientation="vertical"
-            className="absolute top-0 right-0 max-md:hidden"
-          />
-          <DashedLine
-            orientation="horizontal"
-            className="absolute inset-x-0 bottom-0 md:hidden"
-          />
-        </>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
