@@ -4,112 +4,88 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
 
-const categories = [
+const LEFT_ITEMS = [
   {
-    title: "Support",
-    questions: [
-      {
-        question: "How do I update my account without breaking my laptop?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
+    question: "What is Streamline?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
   },
   {
-    title: "Your account",
-    questions: [
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
+    question: "How is Streamline different Linear and Jira?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
   },
   {
-    title: "Other questions",
-    questions: [
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
+    question: "How do I update my account ?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+  {
+    question: "Is support free, or do I need to Google everything?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+  {
+    question: "Are you going to be subsumed by AI?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
   },
 ];
 
-export const FAQ = ({
-  headerTag = "h2",
-  className,
-  className2,
-}: {
-  headerTag?: "h1" | "h2";
-  className?: string;
-  className2?: string;
-}) => {
-  return (
-    <section className={cn("py-28 lg:py-32", className)}>
-      <div className="container max-w-5xl">
-        <div className={cn("mx-auto grid gap-16 lg:grid-cols-2", className2)}>
-          <div className="space-y-4">
-            {headerTag === "h1" ? (
-              <h1 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-                Got Questions?
-              </h1>
-            ) : (
-              <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-                Got Questions?
-              </h2>
-            )}
-            <p className="text-muted-foreground max-w-md leading-snug lg:mx-auto">
-              If you can't find what you're looking for,{" "}
-              <a href="/contact" className="underline underline-offset-4">
-                get in touch
-              </a>
-              .
-            </p>
-          </div>
+const RIGHT_ITEMS = [
+  {
+    question: "Are you going to be subsumed by AI?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+  {
+    question: "How do I update my account?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+  {
+    question: "What if I break my laptop using this app?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+  {
+    question: "What is the best metaphor for using LLMs?",
+    answer:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
+  },
+];
 
-          <div className="grid gap-6 text-start">
-            {categories.map((category, categoryIndex) => (
-              <div key={category.title} className="">
-                <h3 className="text-muted-foreground border-b py-4">
-                  {category.title}
-                </h3>
-                <Accordion type="single" collapsible className="w-full">
-                  {category.questions.map((item, i) => (
-                    <AccordionItem key={i} value={`${categoryIndex}-${i}`}>
-                      <AccordionTrigger>{item.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
+export const FAQ = () => {
+  return (
+    <section className="pb-16 md:pb-28 lg:pb-32">
+      <div className="container mx-auto lg:max-w-5xl">
+        <h2 className="text-center text-2xl font-semibold tracking-tight lg:text-3xl">
+          Frequently Asked Questions
+        </h2>
+
+        <div className="mt-6 grid gap-x-12 md:mt-10 md:grid-cols-2 lg:mt-14">
+          <Accordion type="single" collapsible className="text-muted-foreground border-t">
+            {LEFT_ITEMS.map((item, index) => (
+              <AccordionItem key={index} value={`left-${index}`}>
+                <AccordionTrigger>{item.question}</AccordionTrigger>
+                <AccordionContent className="text-foreground">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
+
+          <Accordion type="single" collapsible className="text-muted-foreground md:border-t">
+            {RIGHT_ITEMS.map((item, index) => (
+              <AccordionItem key={index} value={`right-${index}`}>
+                <AccordionTrigger>{item.question}</AccordionTrigger>
+                <AccordionContent className="text-foreground">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

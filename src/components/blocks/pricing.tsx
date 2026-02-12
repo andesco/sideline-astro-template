@@ -5,128 +5,132 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-const plans = [
+const PLANS = [
   {
     name: "Free",
     monthlyPrice: "$0",
-    yearlyPrice: "$0",
-    description: "Free for everyone",
+    annualPrice: "$0",
     features: [
       "Unlimited members",
       "2 teams",
       "500 issues",
       "Slack and Github integrations",
     ],
+    cta: "Get started",
   },
   {
     name: "Startup",
     monthlyPrice: "$8",
-    yearlyPrice: "$6",
+    annualPrice: "$60",
+    monthlyPerUnit: "per user/month",
+    annualPerUnit: "per user/annum",
     features: [
       "All free plan features and...",
-      "Sideline AI",
+      "Streamline AI",
       "Unlimited teams",
       "Unlimited issues and file uploads",
-      "Sideline Insights",
+      "Streamline Insights",
       "Admin roles",
     ],
+    cta: "7 day free trial",
+    popular: true,
   },
   {
     name: "Enterprise",
-    monthlyPrice: "$8",
-    yearlyPrice: "$6",
+    monthlyPrice: "$15",
+    annualPrice: "$120",
+    monthlyPerUnit: "per user/month",
+    annualPerUnit: "per user/annum",
     features: [
       "All free plan features and...",
-      "Sideline AI",
-      "Supersideline AGI",
-      "Free daily catered lunch",
-      "random HIPPA audits",
+      "Streamline AI",
+      "Unlimited teams",
+      "Unlimited issues and file uploads",
+      "Streamline Insights",
+      "Admin roles",
     ],
+    cta: "Get started",
   },
 ];
 
-export const Pricing = ({ className }: { className?: string }) => {
-  const [isAnnual, setIsAnnual] = useState(true);
+export const Pricing = ({ headerTag = "h2" }: { headerTag?: "h1" | "h2" }) => {
+  const [annualBilling, setAnnualBilling] = useState(true);
 
   return (
-    <section className={cn("py-28 lg:py-32", className)}>
-      <div className="container max-w-5xl">
-        <div className="space-y-4 text-center">
-          <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Pricing
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-xl leading-snug text-balance">
-            Use Sideline for free with your whole team. Upgrade to enable
+    <section className="py-16 md:py-28 lg:py-32">
+      <div className="container">
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
+          {headerTag === "h1" ? (
+            <h1 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              Pricing
+            </h1>
+          ) : (
+            <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              Pricing
+            </h2>
+          )}
+          <p className="text-muted-foreground text-balance text-lg">
+            Use Streamline for free with your whole team. Upgrade to enable
             unlimited issues, enhanced security controls, and additional
             features.
           </p>
+
+          <div className="inline-flex items-center gap-2">
+            <Switch
+              checked={annualBilling}
+              onCheckedChange={setAnnualBilling}
+              aria-label="Toggle annual billing"
+            />
+            <span className="text-sm font-medium">Billed annually</span>
+          </div>
         </div>
 
-        <div className="mt-8 grid items-start gap-5 text-start md:mt-12 md:grid-cols-3 lg:mt-20">
-          {plans.map((plan) => (
-            <Card
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-3">
+          {PLANS.map((plan) => (
+            <div
               key={plan.name}
-              className={`${
-                plan.name === "Startup"
-                  ? "outline-primary origin-top outline-4"
-                  : ""
-              }`}
+              className={cn(
+                plan.popular &&
+                  "from-mint/70 to-sand-100 bg-linear-to-b scale-[1.075] rounded-3xl p-3",
+              )}
             >
-              <CardContent className="flex flex-col gap-7 px-6 py-5">
-                <div className="space-y-2">
-                  <h3 className="text-foreground font-semibold">{plan.name}</h3>
-                  <div className="space-y-1">
-                    <div className="text-muted-foreground text-lg font-medium">
-                      {isAnnual ? plan.yearlyPrice : plan.monthlyPrice}{" "}
-                      {plan.name !== "Free" && (
-                        <span className="text-muted-foreground">
-                          per user/
-                          {isAnnual ? "year" : "month"}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {plan.name !== "Free" ? (
-                  <div className="flex items-center gap-2">
-                    <Switch
-                      checked={isAnnual}
-                      onCheckedChange={() => setIsAnnual(!isAnnual)}
-                      aria-label="Toggle annual billing"
-                    />
-                    <span className="text-sm font-medium">Billed annually</span>
-                  </div>
-                ) : (
-                  <span className="text-muted-foreground text-sm">
-                    {plan.description}
-                  </span>
+              <Card
+                className={cn(
+                  "h-full border-none bg-zinc-100 dark:bg-zinc-900",
+                  plan.popular && "bg-background relative ring-2 ring-black",
                 )}
+              >
+                <CardHeader>
+                  <CardTitle className="text-2xl font-semibold">{plan.name}</CardTitle>
+                  <div className="mt-2">
+                    <p className="text-muted-foreground text-lg font-medium">
+                      {annualBilling ? plan.annualPrice : plan.monthlyPrice}
+                      {(plan.monthlyPerUnit || plan.annualPerUnit) &&
+                        ` ${annualBilling ? plan.annualPerUnit : plan.monthlyPerUnit}`}
+                    </p>
+                  </div>
+                </CardHeader>
 
-                <div className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <div
-                      key={feature}
-                      className="text-muted-foreground flex items-center gap-1.5"
-                    >
-                      <Check className="size-5 shrink-0" />
-                      <span className="text-sm">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                <CardContent className="flex flex-col space-y-6">
+                  <Button variant={plan.popular ? "default" : "outline"} size="lg">
+                    {plan.cta}
+                  </Button>
 
-                <Button
-                  className="w-fit"
-                  variant={plan.name === "Startup" ? "default" : "outline"}
-                >
-                  Get started
-                </Button>
-              </CardContent>
-            </Card>
+                  <div className="space-y-4">
+                    {plan.features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-3">
+                        <Check className="size-4 shrink-0" />
+                        <span className="text-muted-foreground text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

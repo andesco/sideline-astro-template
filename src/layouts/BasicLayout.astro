@@ -1,19 +1,23 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
+import { Banner } from "@/components/blocks/banner";
 import { Footer } from "@/components/blocks/footer";
 import { Navbar } from "@/components/blocks/navbar";
+import { getHeaderBackgroundClass } from "@/lib/header-theme";
 
 const { title, description } = Astro.props;
+const bodyThemeClass = getHeaderBackgroundClass(Astro.url.pathname);
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body class={`h-screen antialiased`}>
+  <body class={`h-screen antialiased ${bodyThemeClass}`}>
+    <Banner client:only='react' />
     <Navbar client:only='react' />
     <main>
-      <section class="mx-auto max-w-2xl px-4 py-28 lg:pt-44 lg:pb-32">
+      <section class="mx-auto max-w-2xl px-4 py-16 md:py-20 lg:py-24">
         <article class="prose prose-lg dark:prose-invert">
           <slot />
         </article>

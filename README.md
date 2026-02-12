@@ -2,11 +2,8 @@
 
 Sideline is a free template built with shadcn/ui, Tailwind 4 and Astro 5.
 
-- [Demo](https://sideline-astro-template.vercel.app/)
 - [Documentation](https://docs.shadcnblocks.com/templates/getting-started)
 - [Figma](https://www.figma.com/design/cFCLMj7DFv0sK7EVsqKeTa/Sideline?node-id=23250-13201&t=I1nAdchDpknii5Bd-1)
-
-![Sideline Astro Template screenshot](./public/og-image.jpg)
 
 ## Getting Started
 
@@ -66,7 +63,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deployment
 
-Production-ready and tested for deployment on [Vercel](https://vercel.com)
+Production-ready and configured for deployment on [Cloudflare Workers](https://workers.cloudflare.com)
 
 ## Credits
 

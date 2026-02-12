@@ -1,91 +1,61 @@
-import { ChevronRight } from "lucide-react";
+import { Bell, Bug, Sparkles } from "lucide-react";
 
-import { DashedLine } from "../dashed-line";
-
-import { Card, CardContent } from "@/components/ui/card";
-
-const items = [
+const STATS = [
   {
-    title: "Purpose-built for product development",
-    image: "/features/triage-card.svg",
+    icon: Bug,
+    value: "100%",
+    label: "More bugs",
   },
   {
-    title: "Manage projects end-to-end",
-    image: "/features/cycle-card.svg",
+    icon: Bell,
+    value: "121%",
+    label: "More notifications",
   },
   {
-    title: "Build momentum and healthy habits",
-    image: "/features/overview-card.svg",
+    icon: Sparkles,
+    value: "2x",
+    label: "More chaotic",
   },
 ];
 
 export const Features = () => {
   return (
-    <section id="feature-modern-teams" className="pb-28 lg:pb-32">
+    <section id="feature1" className="py-16 md:py-28 lg:py-32">
       <div className="container">
-        {/* Top dashed line with text */}
-        <div className="relative flex items-center justify-center">
-          <DashedLine className="text-muted-foreground" />
-          <span className="bg-muted text-muted-foreground absolute px-3 font-mono text-sm font-medium tracking-wide max-md:hidden">
-            MEASURE TWICE. CUT ONCE.
-          </span>
-        </div>
-
-        {/* Content */}
-        <div className="mx-auto mt-10 grid max-w-4xl items-center gap-3 md:gap-0 lg:mt-24 lg:grid-cols-2">
-          <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Made for modern product teams
+        <div className="flex flex-col gap-3 md:flex-row">
+          <h2 className="flex-1 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl lg:text-5xl">
+            Tailor made for post-modern product teams
           </h2>
-          <p className="text-muted-foreground leading-snug">
-            Mainline is built on the habits that make the best product teams
+          <p className="text-muted-foreground flex-1 text-lg font-medium md:max-w-md md:self-end">
+            Streamline is built on the habits that make the best product teams
             successful: staying focused, moving quickly, and always aiming for
             high-quality work.
           </p>
         </div>
 
-        {/* Features Card */}
-        <Card className="mt-8 rounded-3xl md:mt-12 lg:mt-20">
-          <CardContent className="flex p-0 max-md:flex-col">
-            {items.map((item, i) => (
-              <div key={i} className="flex flex-1 max-md:flex-col">
-                <div className="flex-1 p-4 pe-0! md:p-6">
-                  <div className="relative aspect-[1.28/1] overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={`${item.title} interface`}
-                      className="object-cover object-left-top ps-4 pt-2"
-                    />
-                    <div className="from-background absolute inset-0 z-10 bg-linear-to-t via-transparent to-transparent" />
-                  </div>
-
-                  <a
-                    href="#"
-                    className={
-                      "group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
-                    }
-                  >
-                    <h3 className="font-display max-w-60 text-2xl leading-tight font-bold tracking-tight">
-                      {item.title}
-                    </h3>
-                    <div className="rounded-full border p-2">
-                      <ChevronRight className="size-6 transition-transform group-hover:translate-x-1 lg:size-9" />
-                    </div>
-                  </a>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 md:mt-12 lg:mt-20 lg:grid-cols-3">
+          {STATS.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.label}
+                className="from-muted to-mint bg-linear-to-b relative flex flex-col justify-between overflow-hidden rounded-[24px] [aspect-ratio:3.5/2.6] md:[aspect-ratio:3.8/4]"
+              >
+                <div className="p-8 pb-2">
+                  <Icon className="fill-primary size-10" />
                 </div>
-                {i < items.length - 1 && (
-                  <div className="relative hidden md:block">
-                    <DashedLine orientation="vertical" />
-                  </div>
-                )}
-                {i < items.length - 1 && (
-                  <div className="relative block md:hidden">
-                    <DashedLine orientation="horizontal" />
-                  </div>
-                )}
+                <div className="p-6">
+                  <div className="text-6xl font-semibold tracking-tight">{item.value}</div>
+                  <div className="text-xl font-semibold tracking-tight">{item.label}</div>
+                </div>
               </div>
-            ))}
-          </CardContent>
-        </Card>
+            );
+          })}
+        </div>
+
+        <div className="text-muted-foreground mt-6 text-end text-sm">
+          *average increase in comparison to Jira
+        </div>
       </div>
     </section>
   );
